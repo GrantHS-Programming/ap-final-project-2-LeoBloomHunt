@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float Health
+    {
+        set
+        {
+            Health = value;
+            if (health <= 0;){
+                Dead();
+            }
+        }
+        get
+        {
+            return health;
+        }
+    }
+    public float health = 1;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 moveDirection;
@@ -18,5 +33,9 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
+    }
+    public void Dead()
+    {
+        Destroy(gameObject);
     }
 }
