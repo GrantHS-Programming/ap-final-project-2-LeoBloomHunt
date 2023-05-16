@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Health
+    public double Health
     {
         set
         {
-            Health = value;
-            if (health <= 0;){
+            health = value;
+            if (health <= 0){
                 Dead();
             }
         }
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
             return health;
         }
     }
-    public float health = 1;
+    public double health = 1;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 moveDirection;

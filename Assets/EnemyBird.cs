@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyBird : MonoBehaviour
 {
-    public float damage = .5;
-    public float Health
+    Collider2D enemyCollider;
+    public double damage = 1;
+    public double Health
     {
         set
         {
             Health = value;
-            if (health <= 0;){
+            if (health <= 0)
+            {
                 Dead();
             }
         }
@@ -19,25 +21,27 @@ public class EnemyBird : MonoBehaviour
             return health;
         }
     }
-    public float health = 1;
-    public void onTriggerEnter2D(collider2D other)
+    public double health = 1;
+    private void Start()
     {
-        if(other.tag == "Enemy")
+        enemyCollider = GetComponent<Collider2D>();
+        enemyCollider.enabled = true;
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        //if(other.tag == "Player")
+        //{
+        //PlayerController player = other.GetComponent<PlayerController>();
+        //if(player != null)
+        //{
+        if (other.gameObject.name == "Player")
         {
-            EnemyBird enemy = other.GetComponent<EnemyBird>();
-            if(enemy != null)
-            {
-                enemy.Health -= damage;
-            }
+            Dead();
+            //other.gameObject.Health -= damage;
+            //other.gameObject.Dead();
         }
-        else if(other.tag == "Player")
-        {
-            Player player = other.GetComponent<player>();
-            if(player != null)
-            {
-                player.Health -= damage;
-            }
-        }
+            //}
+        //}
     }
     public void Dead()
     {
