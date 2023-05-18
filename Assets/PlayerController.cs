@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    Collider2D playerCollider;
     public double Health
     {
         set
@@ -19,10 +20,24 @@ public class PlayerController : MonoBehaviour
         }
     }
     public double health = 1;
+    public double damage = 1f;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 moveDirection;
     Vector2 mousePositition;
+    private void Start()
+    {
+        playerCollider = GetComponent<Collider2D>();
+        playerCollider.enabled = true;
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.name == "EnemyBird")
+        {
+            
+            Health -= damage;
+        }
+    }
     void Update()
     {
         float moveX = Input.GetAxisRaw("Horizontal");

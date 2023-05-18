@@ -34,9 +34,9 @@ public class EnemyBird : MonoBehaviour
         //PlayerController player = other.GetComponent<PlayerController>();
         //if(player != null)
         //{
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == "EnemyBird")
         {
-            Dead();
+            health -= damage;
             //other.gameObject.Health -= damage;
             //other.gameObject.Dead();
         }
