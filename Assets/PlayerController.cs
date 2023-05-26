@@ -38,6 +38,13 @@ public class PlayerController : MonoBehaviour
             Health -= damage;
         }
     }
+    public void OnCollisionStay2D(Collision2D other)
+    {
+        if(other.gameObject.name == "EnemyBird")
+        {
+            Health -= damage;
+        }
+    }
     void Update()
     {
         float moveX = Input.GetAxisRaw("Horizontal");

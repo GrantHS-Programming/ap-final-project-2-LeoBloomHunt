@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EnemyBird : MonoBehaviour
 {
+    private void Update()
+    {
+        if(target != null)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, target.position, step);
+        }
+    }
     Collider2D enemyCollider;
     public double damage = 1;
     public double Health
@@ -37,14 +45,19 @@ public class EnemyBird : MonoBehaviour
         if (other.gameObject.name == "EnemyBird")
         {
             health -= damage;
-            //other.gameObject.Health -= damage;
-            //other.gameObject.Dead();
         }
-            //}
-        //}
     }
     public void Dead()
     {
         Destroy(gameObject);
+    }
+    public float speed = 3f;
+    private Transform target;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            target = other.transform;
+        }
     }
 }
